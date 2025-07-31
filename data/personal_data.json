@@ -1,0 +1,100 @@
+{
+  "summary": "Front-end developer with 1.5+ years of professional experience building interactive web applications using Vue.js, JavaScript, and Tailwind CSS. Comfortable working across the stack, with experience in RESTful APIs, authentication, real-time databases, and WebSocket communication. Proven ability to develop real-time interfaces and collaborate on bothfrontend and backend tasks.",
+  "work_experience": [
+    {
+      "job_title": "GUI Developer",
+      "company_name": "Diabolocom",
+      "location": "Remote",
+      "start_date": "2025-02",
+      "end_date": "Present",
+      "responsibilities": [
+        "Developed an interface using Vue.js, JavaScript, WebSockets, and the Web Audio API in ComfyUI for real-time voice communication with an AI-powered voice bot.",
+        "Built a real-time automatic speech recognition (ASR) interface using FastAPI, Whisper model, HTML, and CSS with audio recording, live transcriptions, timestamp visualization, and evaluation metrics.",
+        "Developed custom ComfyUI extensions.",
+        "Contributed to the company blog by updating and adding content using WordPress."
+      ]
+    },
+    {
+      "job_title": "Student Success Mentor",
+      "company_name": "Amsterdam Tech",
+      "location": "Remote",
+      "start_date": "2024-11",
+      "end_date": "2025-05",
+      "responsibilities": [
+        "Designed and developed a faculty-facing web application for tracking student progress.",
+        "Monitored student performance and provided guidance in JavaScript, C, and Python."
+      ]
+    },
+    {
+      "job_title": "Front End Developer",
+      "company_name": "Pluxbox",
+      "location": "Remote",
+      "start_date": "2023-11",
+      "end_date": "2024-04",
+      "responsibilities": [
+        "Refactored the organization's page using Vue.js, Vue Apollo, GraphQL, and TypeScript.",
+        "Managed both front-end and back-end aspects, implementing GraphQL queries for CRUD operations and ensuring real-time updates.",
+        "Contributed to the company’s design system.",
+        "Worked with clients to implement requested features using Jira for ticket management."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Bachelor of Science",
+      "field": "Software Engineering",
+      "institution": "Amsterdam Tech",
+      "start_date": "2022-09",
+      "end_date": "2026-01"
+    },
+    {
+      "certificate": "Meta Front-End Developer Professional Certificate",
+      "institution": "Meta"
+    },
+    {
+      "certificate": "Programming in C++ Specialization",
+      "institution": "Codio"
+    }
+  ],
+  "skills": {
+    "programming_languages": ["C", "C++", "JavaScript", "Ruby", "Python"],
+    "web_development": ["HTML", "CSS", "Vue.js", "React.js", "Nuxt", "Tailwind CSS", "NaiveUI", "GraphQL", "RESTful APIs", "WebSockets", "Figma", "Framer", "Gradio"],
+    "tools_frameworks": ["Gradio UI", "ComfyUI", "Node.js", "Express.js", "Jira", "Scrum", "FastAPI"],
+    "version_control": ["Git", "GitHub", "Bitbucket"],
+    "databases": ["MySQL", "MongoDB", "SQL Server"]
+  },
+  "notable_projects": [
+    {
+      "name": "HISI Interface: Hear It, See It",
+      "type": "Open Source",
+      "organization": "Diabolocom",
+      "authors": ["Gaurav Maheshwari", "Soraia Lima", "Kevin El Haddad"],
+      "description": "A real-time, modular, open-source ASR (Automatic Speech Recognition) performance evaluation tool. Provides a visual and interactive way to assess ASR models, supporting live transcription, file upload, interactive timeline, and a plug-and-play architecture for different ASR engines. Engineered for low latency and open to community contributions.",
+      "github": "https://www.diabolocom.com/artificial-intelligence/agent-assist/"
+    }
+  ],
+  "challenges": [
+    {
+      "situation": "Needed to extend ComfyUI's front-end for new features.",
+      "action": "Cloned and debugged the open-source ComfyUI codebase, learned its architecture, and implemented new features such as zip upload for workflows, which were not available in the original project."
+    }
+  ],
+  "career_goals": "To become a leading developer in real-time AI-powered applications, contribute to open-source projects, and work on innovative solutions that bridge user experience and advanced technology.",
+  "relocation_remote": {
+    "open_to_relocation": true,
+    "open_to_remote": true
+  },
+  "languages": [
+    { "language": "Spanish", "proficiency": "Native" },
+    { "language": "Portuguese", "proficiency": "Native" },
+    { "language": "English", "proficiency": "Professional" }
+  ],
+  "personal_interests": [
+    "Cats", "Food", "Traveling", "Reading", "Sports"
+  ],
+  "professional_qualities": [
+    "Recognized by previous team members as productive, reliable, and professional collaborator",
+    "Highly adaptable and proactive",
+    "Comfortable taking on tasks beyond core expertise by quickly learning and delivering effective solutions"
+  ]
+}
