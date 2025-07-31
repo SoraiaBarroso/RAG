@@ -26,6 +26,20 @@ rag_chain = None
 vector_store = None
 embedding_function = None
 
+origins = [
+    "http://localhost",
+    "http://localhost:8000",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"], # For simplicity during testing, allow all origins.
+                        # In production, specify exact origins like `origins` list above.
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 # Model for the request body
 class QuestionRequest(BaseModel):
     question: str
