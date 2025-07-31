@@ -7,29 +7,30 @@ from langchain_community.vectorstores import Chroma
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
-import json # Only for json_main.py
+from langchain_core.documents import Document
+import json 
 
-load_dotenv() # Load environment variables at the very beginning
+load_dotenv() 
 
 DATA_PATH = "data/"
 PDF_FILENAME = "personal_data.json"
 CHROMA_PATH = "chroma_db"
-# best option so far is chroma_db_fixed
 
-# ... (load_documents and create_documents_from_json functions - no change) ...
 def load_documents():
+    """Loads JSON document and converts it into structured Document objects."""
     json_path = os.path.join(DATA_PATH, PDF_FILENAME)
-    import json
+
     with open(json_path, 'r', encoding='utf-8') as f:
         json_content = json.load(f)
+
     documents = create_documents_from_json(json_content, json_path)
     print(f"Loaded JSON document from {json_path} and converted to {len(documents)} structured sections")
     return documents
 
 def create_documents_from_json(json_content, source_path):
-    from langchain_core.documents import Document
-    import json
+    """Converts JSON content into structured Document objects."""
     documents = []
+
     for section_name, section_content in json_content.items():
         if isinstance(section_content, list):
             for i, item in enumerate(section_content):
@@ -48,22 +49,26 @@ def create_documents_from_json(json_content, source_path):
             documents.append(doc)
     return documents
 
-# ... (split_documents function - no change) ...
 def split_documents(documents):
+    """Splits documents into smaller chunks for better processing."""
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=1500, chunk_overlap=100, length_function=len)
     final_chunks = []
+    
     for doc in documents:
         if len(doc.page_content) > 1500:
             chunks = text_splitter.split_documents([doc])
             final_chunks.extend(chunks)
         else:
             final_chunks.append(doc)
+    
     print(f"Processed {len(documents)} structured sections into {len(final_chunks)} final chunks")
+    
     for i, chunk in enumerate(final_chunks[:3]):
         print(f"Chunk {i+1} ({chunk.metadata.get('section', 'Unknown')}):")
         print(f"  Content: {chunk.page_content[:100]}...")
         print(f"  Metadata: {chunk.metadata}")
         print("---")
+    
     return final_chunks
 
 
@@ -104,13 +109,13 @@ def create_rag_chain(vector_store, llm_model_name="gemini-2.0-flash", context_wi
         model=llm_model_name,
         temperature=0,
     )
+
     print(f"Initialized ChatGoogleGenerativeAI with model: {llm_model_name}")
 
     retriever = vector_store.as_retriever(
         search_type="mmr",  # Using MMR for better diversity
         search_kwargs={'k': 15, 'fetch_k': 20}  # Fetch more, return top 15
     )
-    print("Retriever initialized.")
 
     template = """You are answering questions about a person's professional background. Use ALL the provided context to answer questions in first person. When asked about work experience, make sure to include ALL job positions mentioned in the context, in chronological order (most recent first).
 
@@ -130,6 +135,7 @@ def create_rag_chain(vector_store, llm_model_name="gemini-2.0-flash", context_wi
         | llm
         | StrOutputParser()
     )
+
     print("RAG chain created.")
     return rag_chain
 
@@ -138,17 +144,18 @@ def query_rag(chain, question):
     """Queries the RAG chain and prints the response."""
     print("\nQuerying RAG chain...")
     print(f"Question: {question}")
-    # Get the retriever context directly to check if it's empty
-    # This assumes the retriever is the first step in the chain
+    
     try:
         context = chain.steps[0]["context"].invoke(question)
     except Exception:
         context = None
+
     # If context is empty or not relevant, print fallback
     if not context or (isinstance(context, list) and all((not doc.page_content.strip()) for doc in context)):
         print("\nResponse:")
         print("I'm sorry, I don't answer questions about this topic. Please ask about my professional background, skills, experience, or related areas.")
         return
+    
     response = chain.invoke(question)
     print("\nResponse:")
     print(response)
@@ -166,7 +173,7 @@ def debug_retrieval(vector_store, question):
         print("---")
 
 if __name__ == "__main__":
-    load_dotenv() # Ensure .env is loaded
+    load_dotenv() 
 
     embedding_function = get_embedding_function(model_name="models/text-embedding-004")
     
